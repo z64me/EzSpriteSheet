@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<style>
+			.tex {
+				border: none;/*1px solid black;*/
+				display: inline-block;
+				float: left;
+				padding: 10px;
+				background: #ffcccc;
+				min-width: 350px;
+				min-height: 600px;
+			}
+			.green {
+				background: #ccffcc;
+			}
+			.yellow {
+				background: #ffffcc;
+			}
+			.last {
+				margin-bottom: 50px;
+			}
+			canvas { border: 1px solid black; }
+			form { min-height: 40px; }
+			body {
+				background: #ffffff;
+				padding: 25px;
+				font-family: Cantarell;
+				padding-top: 0px;
+			}
+			tr td {
+				height: 28px;
+				padding: 0;
+				margin: 0;
+			}
+			.sprite-sheet, canvas {
+				border:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>EzSpriteSheet Demo (JavaScript + HTML5 Canvas)</h2>
+		<h3>Sprite art courtesy of <a href="https://twitter.com/DynoPunch">@DynoPunch</a></h3>
+		<canvas id="viewer-canvas"></canvas>
+		<br/>
+		Animation Name: <b id="animName"></b>
+		<br/>
+		<button onclick="button_prev()">Previous</button>
+		<button onclick="button_next()">Next</button>
+		<br/>
+		<button onclick="button_mirrorX()">X Mirror</button>
+		<button onclick="button_mirrorY()">Y Mirror</button>
+		<button onclick="button_grid()">Grid</button>
+		<h2>Sprite sheets</h2>
+		<script src="viewer.js"></script>
+	</body>
+</html>
+
