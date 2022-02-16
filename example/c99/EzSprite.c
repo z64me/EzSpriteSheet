@@ -15,7 +15,7 @@
 
 /*
  *
- * private types matching EzSpriteSheet's c89 output
+ * private types matching EzSpriteSheet's c99 output
  * (it is important that they match!)
  *
  */
