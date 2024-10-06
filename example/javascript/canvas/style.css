@@ -1,0 +1,24 @@
+.tex {
+    border: none;/*1px solid black;*/
+    display: inline-block;
+    float: left;
+    padding: 10px;
+    background: #ffcccc;
+    min-width: 350px;
+    min-height: 600px;
+}
+.green {
+    background: #ccffcc;
+}
+.yellow {
+    background: #ffffcc;
+}
+.last {
+    margin-bottom: 50px;
+}
+canvas { border: 1px solid black; }
+form { min-height: 40px; }
+
+.sprite-sheet, canvas {
+    border:1px solid black;
+}

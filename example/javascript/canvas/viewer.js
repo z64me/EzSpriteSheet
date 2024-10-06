@@ -180,13 +180,19 @@ function button_grid()
 		async: false,
 		success: function( data )
 		{
+			
 			spriteDB = data;
 			
 			/* output sprite sheets onto web page */
 			var items = [];
+			
 			for (var i = 0; i < data.sheets; i++)
+			{
+				items.push("<div id='sprites' class='container d-flex justify-content-center'>");
 				items.push( "<img class='sprite-sheet' src='" + data.sheet[i].source + "'>" );
-
+				items.push("</div>");
+			}
+			
 			$( "<p/>", {
 				html: items.join( "<br/>" )
 			}).appendTo( "body" );
@@ -204,4 +210,11 @@ function button_grid()
 	mainLoop();
 
 } ());
+
+// Event listeners
+$('#previous').on('click', function() {button_prev()});
+$('#next').on('click', function() {button_next()});
+$('#mirrorx').on('click', function() {button_mirrorX()});
+$('#mirrory').on('click', function() {button_mirrorY()});
+$('#grid').on('click', function() {button_grid()});
 
