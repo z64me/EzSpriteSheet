@@ -446,18 +446,18 @@ const char *EzSpriteSheet_export(
 			if (ox < 0) /* unset */
 				hasPivot = ox = oy = 0;
 			
-			/* offset */
-			ox -= x;
-			oy -= y;
-			ox += g.pad;
-			oy += g.pad;
-			
 			/* get clipping rect within sprite sheet */
 			if (rect)
 			{
 				page = EzSpriteSheetRect_get_page(rect);
 				rot = EzSpriteSheetRect_get_rotated(rect);
 				EzSpriteSheetRect_get_crop(rect, &x, &y, &w, &h);
+				
+				/* offset */
+				x += g.pad;
+				y += g.pad;
+				w -= g.pad * 2;
+				h -= g.pad * 2;
 			}
 			else
 				rot = page = ox = oy = x = y = w = h = 0;
