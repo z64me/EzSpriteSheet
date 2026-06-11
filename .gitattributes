@@ -1,0 +1,6 @@
+* text=auto
+
+*.sh eol=lf
+*.git* eol=lf
+* eol=lf
+
