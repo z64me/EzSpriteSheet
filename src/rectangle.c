@@ -467,6 +467,7 @@ void *EzSpriteSheetRectList_page(struct EzSpriteSheetRectList *s
 	, int *rects
 	, float *occupancy
 	, int pad
+	, int padFill
 	, int trim
 	, void progress(float unit_interval)
 )
@@ -551,6 +552,44 @@ void *EzSpriteSheetRectList_page(struct EzSpriteSheetRectList *s
 			/* direct copy */
 			else
 				memcpy(d8, src8 + y * frameWidth * 4, crop.w * 4);
+		}
+		
+		if (padFill)
+		{
+			int x_start = r->x + pad;
+			int y_start = r->y + pad;
+			int x_end   = x_start + crop.w;
+			int y_end   = y_start + crop.h;
+			
+			/* extrude top/bottom edges */
+			for (int x = x_start; x < x_end; ++x)
+			{
+				uint32_t top_pixel = p[y_start * *w + x];
+				uint32_t bot_pixel = p[(y_end - 1) * *w + x];
+				
+				for (int i = 1; i <= pad; ++i)
+				{
+					p[(y_start - i) * *w + x] = top_pixel;
+					p[(y_end - 1 + i) * *w + x] = bot_pixel;
+				}
+			}
+			
+			/* extrude left/right edges (and corners) */
+			int total_y_start = y_start - pad;
+			int total_y_end   = y_end + pad;
+			for (int y = total_y_start; y < total_y_end; ++y)
+			{
+				int src_y = y < y_start ? y_start : (y >= y_end ? y_end - 1 : y);
+				
+				uint32_t left_pixel  = p[src_y * *w + x_start];
+				uint32_t right_pixel = p[src_y * *w + (x_end - 1)];
+				
+				for (int i = 1; i <= pad; ++i)
+				{
+					p[y * *w + (x_start - i)] = left_pixel;
+					p[y * *w + (x_end - 1 + i)] = right_pixel;
+				}
+			}
 		}
 		
 		/* report progress */

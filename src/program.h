@@ -47,6 +47,7 @@ const char *EzSpriteSheet(
 	, int trim
 	, int doubles
 	, int pad
+	, int padFill
 	, int visual
 	, int width
 	, int height

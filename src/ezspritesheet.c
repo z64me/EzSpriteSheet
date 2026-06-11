@@ -84,6 +84,7 @@ static struct
 	int trim;
 	int doubles;
 	int pad;
+	int padFill;
 	int visual;
 	int width;
 	int height;
@@ -294,7 +295,7 @@ void *EzSpriteSheet_getPagePixels(
 	}
 	
 	/* page containing sprites */
-	EzSpriteSheetRectList_page(rectList, page, p, w, h, rects, occupancy, g.pad, g.trim, progress);
+	EzSpriteSheetRectList_page(rectList, page, p, w, h, rects, occupancy, g.pad, g.padFill, g.trim, progress);
 	
 	/* overlay translucent debugging rectangles */
 	if (g.visual)
@@ -521,6 +522,7 @@ const char *EzSpriteSheet(
 	, int trim
 	, int doubles
 	, int pad
+	, int padFill
 	, int visual
 	, int width
 	, int height
@@ -614,6 +616,7 @@ const char *EzSpriteSheet(
 	g.trim = trim;
 	g.doubles = doubles;
 	g.pad = pad;
+	g.padFill = padFill;
 	g.visual = visual;
 	g.width = width;
 	g.height = height;
@@ -636,6 +639,7 @@ const char *EzSpriteSheet(
 	info("  Rotate      '%s'", BOOL_ON_OFF(rotate));
 	info("  Trim        '%s'", BOOL_ON_OFF(trim));
 	info("  Pad         '%s' (%d)", BOOL_ON_OFF(pad), pad);
+	info("  PadFill     '%s'", BOOL_ON_OFF(padFill));
 	info("  Color       '%s' (%06x)", BOOL_ON_OFF(color), color);
 	
 	/* file tree refresh */

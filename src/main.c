@@ -82,7 +82,9 @@ static int usage(FILE *stream, int argc)
 	P("  -t, --trim      trim excess pixels from around sprites");
 	P("  -d, --doubles   detect and omit duplicate sprites (doubles)");
 	P("  -b, --border    add padding around each packed sprite");
+	P("  -bf   [-fill]   (--border-fill extrudes edge pixels into padding)");
 	P("                  e.g. --border 8 (for 8 pixels)");
+	P("                  e.g. --border-fill 2");
 	P("  -c, --color     treat pixels matching hex color as animation pivots");
 	P("                  e.g. --color 00ff00");
 	P("                  (complains if multiple possible matches are found)");
@@ -176,6 +178,7 @@ int main(int argc, char *argv[])
 	int trim = 0;
 	int doubles = 0;
 	int pad = 0;
+	int padFill = 0;
 	int visual = 0;
 	int width = 0;
 	int height = 0;
@@ -273,6 +276,12 @@ int main(int argc, char *argv[])
 				|| pad <= 0
 			) die("argument '%s' expects decimal integer > 0", this);
 		}
+		else if (ARGMATCH("bf", "border-fill")) {
+			if (sscanf(param, "%d", &pad) != 1
+				|| pad <= 0
+			) die("argument '%s' expects decimal integer > 0", this);
+			padFill = 1;
+		}
 		else if (ARGMATCH("c", "color")) {
 			if (sscanf(param, "%x", &color) != 1
 				|| color == 0
@@ -323,6 +332,7 @@ int main(int argc, char *argv[])
 		, trim
 		, doubles
 		, pad
+		, padFill
 		, visual
 		, width
 		, height

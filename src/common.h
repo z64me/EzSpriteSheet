@@ -172,6 +172,7 @@ void *EzSpriteSheetRectList_page(struct EzSpriteSheetRectList *s
 	, int *rects
 	, float *occupancy
 	, int pad
+	, int padFill
 	, int trim
 	, void progress(float unit_interval)
 );

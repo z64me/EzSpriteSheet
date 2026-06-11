@@ -246,6 +246,7 @@ int MainWindow::on_buttonRefresh_clicked()
     int rotate = this->ui->cbRotate->isChecked();
     int trim = this->ui->cbTrim->isChecked();
     int pad = this->ui->valuePad->value();
+    int padFill = 0; // TODO add this to qt ui next to padding
     int negate = this->ui->cbExhaust_7->isChecked();
     uint32_t color = (this->settings.pivot.red() << 16) | (this->settings.pivot.green() << 8) | this->settings.pivot.blue();
 
@@ -289,6 +290,7 @@ int MainWindow::on_buttonRefresh_clicked()
         , trim
         , doubles
         , pad
+        , padFill
         , visual
         , width
         , height
